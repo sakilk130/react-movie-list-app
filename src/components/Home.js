@@ -8,6 +8,8 @@ import { useHomeFetch } from '../hooks/useHomeFetch';
 
 //components
 import HeroImage from './HeroImage';
+import Grid from './Grid';
+import Thumb from './Thumb';
 
 // image
 import NoImage from '../images/no_image.jpg';
@@ -25,6 +27,20 @@ const Home = () => {
           text={state.results[0].overview}
         />
       ) : null}
+      <Grid header="Popular Movies">
+        {state.results.map((movie) => (
+          <Thumb
+            key={movie.id}
+            clickable
+            image={
+              movie.poster_path
+                ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+                : NoImage
+            }
+            movieId={movie.id}
+          />
+        ))}
+      </Grid>
     </>
   );
 };
